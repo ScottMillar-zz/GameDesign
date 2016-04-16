@@ -4,8 +4,10 @@ using System.Collections;
 public class LaserBeam : MonoBehaviour {
 
     public float range = 100f;
+    public GameObject laserCollision;
 
     Ray shootRay;
+    
     RaycastHit laserHit;
     LineRenderer laserLine;
     int shootableMask;
@@ -14,7 +16,7 @@ public class LaserBeam : MonoBehaviour {
     {
 
         laserLine = GetComponent<LineRenderer>();
-
+        Instantiate(laserCollision, laserHit.point, transform.rotation);
     }
 	
 	
