@@ -64,6 +64,7 @@ public class GrabAndDrop : MonoBehaviour
         {
             Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * grabbedObjectSize;
             grabbedObject.transform.position = newPosition;
+            grabbedObject.transform.rotation = Camera.main.transform.rotation;
         }
     }
 }
