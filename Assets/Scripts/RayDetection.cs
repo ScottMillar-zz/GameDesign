@@ -22,11 +22,11 @@ public class RayDetection : MonoBehaviour
     {
         if(detectedRays[0] == true && detectedRays[1] == true)
         {
-            GetComponentInChildren<LaserBeam>().isAND = false;
+            GetComponentInChildren<LaserBeam>().isEnabled = false;
         }
         else
         {
-            GetComponentInChildren<LaserBeam>().isAND = true;
+            GetComponentInChildren<LaserBeam>().isEnabled = true;
         }
     }
 

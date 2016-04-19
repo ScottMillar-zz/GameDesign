@@ -4,6 +4,7 @@ using System.Collections;
 public class LaserBeam : MonoBehaviour {
 
     public float range = 100f;
+    public bool isEnabled = false;
     public bool isAND = false;
     public bool continued = false;
     public GameObject laserCollision;
@@ -26,11 +27,11 @@ public class LaserBeam : MonoBehaviour {
 
         shootableMask = LayerMask.GetMask("Shootable");
 
-        if(isAND == false)
+        if(isEnabled == false)
         {
             DoTheLaser();
         }
-        else if (isAND == true)
+        else if (isEnabled == true)
         {
             laserLine.enabled = false;
             laserParticle.SetActive(false);
@@ -51,7 +52,13 @@ public class LaserBeam : MonoBehaviour {
 
         if (Physics.Raycast(shootRay, out laserHit, range, shootableMask))
         {
+           
             laserLine.SetPosition(1, laserHit.point);
+
+            if (laserHit.collider.tag == "Key")
+            {
+                laserHit.transform.SendMessage("HitByRay");
+            }
 
             if (laserHit.collider.tag == "AND")
             {
@@ -100,7 +107,7 @@ public class LaserBeam : MonoBehaviour {
                 }
             }
             continued = true;
-            laserHit.transform.SendMessage("HitByRay");
+            
         }
     }
 }
